@@ -26,8 +26,11 @@ english-flashcards/
 ├── README.md
 ├── backend/
 │   ├── src/
+|   |   |--docs
+|   |   |   └──swaggerSchemas.js    
 │   │   ├── config/
 │   │   │   └── db.js              # MongoDB connection
+│   │   │   └── swagger.js
 │   │   ├── controllers/
 │   │   │   └── cardController.js
 │   │   ├── models/
@@ -38,14 +41,29 @@ english-flashcards/
 │   │   └── server.js
 │   ├── .env
 │   ├── package.json
-│   └── nodemon.json
+│   └── package-lock.json
+│   └── node_modules
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── app.js
 
 ```
 
-## **Start the MongoDB**
+## **Start the MongoDB & Backend**
 
-Please run the following command to start the mongoDB and mongoExpress container:
-    `docker-compose up -d`
+From the project root, run:
+    `docker-compose up --build`
+
+**This will start:**
+
+    MongoDB → port 27017
+
+    Mongo Express → port 8081
+
+    Backend (Node.js/Express) → port 3000
 
 To check if the container is up and running please use command:
     `docker ps`    
@@ -76,11 +94,38 @@ To stop the docker process please use command:
 
     ```
 
-## **Starting the app:**
+## **Start the Backend (Development):**
 
-To run the node app, please move into backend filder and then run the following command:
+Backend already runs in Docker via `docker-compose`.
 
-    `npm run dev`
+Hot reload enabled via volume mapping.
+`Local changes in backend/src/ will automatically reload backend (nodemon).
+`
+
+## **Start the Frontend (Development):**
+
+Since the front-end uses ES Modules, it cannot be opened directly via file://. You need to serve it via a local server:
+
+**## Option 1: live-server (quick):**
+
+    cd frontend
+
+    live-server --port=5500
+
+    Frontend available at: http://localhost:5500
+
+    Fetches backend API at http://localhost:3000/api/cards
+
+
+**## Option 2: small Express server:**
+
+    cd frontend
+
+    node server.js
+
+    Serves frontend at http://localhost:5500
+
+    Supports ES modules and fetch requests to backend.
 
 ## **Use Swagger** 
 You can open the following link for swagger:
