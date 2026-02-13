@@ -42,12 +42,19 @@ english-flashcards/
 
 ```
 
+## **Start the MongoDB**
 
-In project's root folder (where is docker-compose.yml file) please run the following command to start the mongoDB and mongoExpress container:
+Please run the following command to start the mongoDB and mongoExpress container:
     `docker-compose up -d`
 
+To check if the container is up and running please use command:
+    `docker ps`    
 
-## **MongoDB:**
+To stop the docker process please use command:
+    `docker-compose down`    
+
+
+## **Access the MongoDB:**
 
 1. You can access the DB via Monga Express UI: 
 
@@ -74,3 +81,8 @@ In project's root folder (where is docker-compose.yml file) please run the follo
 To run the node app, please move into backend filder and then run the following command:
 
     `npm run dev`
+
+## **Use Swagger** 
+You can open the following link for swagger:
+
+    `http://localhost:3000/api-docs`
