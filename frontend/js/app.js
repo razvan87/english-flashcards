@@ -1,3 +1,6 @@
+import { addSpeakButtonListener } from './speak.js';
+import { createCardElement } from './card.js';
+
 const container = document.getElementById('cards-container');
 
 async function fetchCards() {
@@ -6,24 +9,10 @@ async function fetchCards() {
     const data = await response.json();
 
     data.data.forEach(card => {
-      const cardEl = document.createElement('div');
-      cardEl.classList.add('card');
-
-      cardEl.innerHTML = `
-        <div class="card-inner">
-          <div class="card-front">${card.text}</div>
-          <div class="card-back">
-            ${card.meanings.map(m => `<p><strong>${m.partOfSpeech}:</strong> ${m.definition}</p>`).join('')}
-          </div>
-        </div>
-      `;
-
-      cardEl.addEventListener('click', () => {
-        cardEl.classList.toggle('flipped');
-      });
-
+      const cardEl = createCardElement(card);
       container.appendChild(cardEl);
     });
+    
   } catch (err) {
     console.error('Error fetching cards:', err);
     container.innerHTML = '<p>Failed to load cards.</p>';
