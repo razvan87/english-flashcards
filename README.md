@@ -1,9 +1,47 @@
 # 📚 English Flashcards
 
-A Node.js + Express + MongoDB application for managing English vocabulary flashcards.  
+A full-stack ready HTML, CSS, JavaScript, Node.js + Express + MongoDB application for managing English vocabulary flashcards.
+This project allows you to create, store, and retrieve structured English vocabulary cards.  
 Each card can contain a word or phrase, difficulty level (A1 → C2), image (optional), multiple meanings (based on part of speech), usage examples, and optional category.
 
 ---
+
+## Card Structure
+
+**Each flashcard contains:**
+
+    text → The word or phrase
+
+    level → CEFR level (A1, A2, B1, B2, C1, C2)
+
+    imageUrl → Optional image
+
+    meanings[] → Array of meanings:
+
+    partOfSpeech → noun | verb | adjective | adverb | phrase
+
+    definition
+
+    example
+
+    category → Optional predefined category
+
+    timestamps → Automatically generated
+
+## **Architecture Overview**
+
+**The application follows a clean separation of concerns:**
+```text
+Client (Frontend)
+        ↓
+Express REST API
+        ↓
+Controllers
+        ↓
+Mongoose Models
+        ↓
+MongoDB
+```
 
 ## 🧱 Tech Stack
 
@@ -130,4 +168,60 @@ Since the front-end uses ES Modules, it cannot be opened directly via file://. Y
 ## **Use Swagger** 
 You can open the following link for swagger:
 
-    `http://localhost:3000/api-docs`
+    `http://localhost:3000/api-docs`\
+
+
+## **Create new card using curl**
+
+```text
+curl -X POST http://localhost:3000/api/cards \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "run",
+    "level": "A1",
+    "imageUrl": "https://example.com/run.png",
+    "meanings": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "to move quickly using your legs",
+        "example": "I run every morning"
+      }
+    ],
+    "category": "Sports"
+  }'
+  ```
+
+  **Categories Available:**
+  Categories Available
+
+    Animals
+
+    Food
+
+    Colors
+
+    Clothes
+
+    Nature
+
+    Transport
+
+    People
+
+    House
+
+    Work
+
+    School
+
+    Sports
+
+    Technology
+
+    Weather
+
+    Health
+
+    Travel
+
+    All (special global category)
