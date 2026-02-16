@@ -1,6 +1,8 @@
 import express from 'express';
+import authRoutes from "./routes/authRoutes.js";
 import cardRoutes from './routes/cardRoutes.js';
 import cors from 'cors';
+
 
 const app = express();
 
@@ -21,19 +23,11 @@ const allowedOrigins = [
     methods: ["GET", "POST", "PUT", "DELETE"]
   }));
 
-
-// // allow only my frontend application to access the API:
-// app.use(cors({
-//     origin: "http://localhost:5500", // frontend dev server
-//     methods: ["GET", "POST", "PUT", "DELETE"]
-//   }));
-
-// app.use(cors()); // allow all origins for development
-
 // middleware to read JSON
 app.use(express.json());
 
 // routes
+app.use("/api/auth", authRoutes);
 app.use("/api/cards", cardRoutes);
 
 export default app;

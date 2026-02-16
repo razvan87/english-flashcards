@@ -1,5 +1,7 @@
 import express from 'express';
 import { createCard, getCards } from '../controllers/cardController.js';
+import { authMiddleware} from '../middleware/authMiddleware.js';
+import { roleMiddleware } from '../middleware/roleMiddleware.js';
 
 const router = express.Router();
 
@@ -75,7 +77,7 @@ const router = express.Router();
  *                   items:
  *                     $ref: '#/components/schemas/Card'
  */
-router.get("/", getCards);
+router.get("/", authMiddleware, roleMiddleware("ADMIN", "USER"), getCards); // USER + ADMIN  can GET
 
 /**
  * @swagger
@@ -111,6 +113,18 @@ router.get("/", getCards);
  *       201:
  *         description: Card created
  */
-router.post("/", createCard);
+router.post("/", authMiddleware, roleMiddleware("ADMIN"), createCard); // Only ADMIN
+
+
+router.route("/:id", authMiddleware, roleMiddleware("ADMIN"))
+.get((req, res) => {
+    res.status(501).json({ message: `Not implemented! Get request with id ${req.params.id}`});
+})
+.put((req, res) => {
+  res.status(501).json({ message: `Not implemented! Put request with id ${req.params.id}`});
+})
+.delete((req, res) => {
+  res.status(501).json({ message: "Not implemented" });
+});
 
 export default router;
