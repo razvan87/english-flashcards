@@ -18,6 +18,8 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
+      ME_CONFIG_RETRY_INTERVAL: 2000
+      ME_CONFIG_RETRY_ATTEMPTS: 20
     depends_on:
       - mongo  
 
