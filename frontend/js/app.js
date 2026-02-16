@@ -12,7 +12,7 @@ async function fetchCards() {
       const cardEl = createCardElement(card);
       container.appendChild(cardEl);
     });
-    
+
   } catch (err) {
     console.error('Error fetching cards:', err);
     container.innerHTML = '<p>Failed to load cards.</p>';

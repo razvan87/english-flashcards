@@ -1,8 +1,13 @@
 import { addSpeakButtonListener } from "./speak.js";
 
 export function createCardElement(card) {
+
+    // Bootstrap column wrapper
+    const col = document.createElement("div");
+    col.className = "col-12 col-sm-6 col-lg-3";
+
     const cardEl = document.createElement("div");
-    cardEl.classList.add("card");
+    cardEl.classList.add("flip-card");
   
     const cardInner = document.createElement("div");
     cardInner.classList.add("card-inner");
@@ -46,12 +51,13 @@ export function createCardElement(card) {
     cardInner.appendChild(cardFront);
     cardInner.appendChild(cardBack);
     cardEl.appendChild(cardInner);
+    col.appendChild(cardEl);
   
     // Flip behavior
     cardEl.addEventListener("click", () => {
       cardEl.classList.toggle("flipped");
     });
   
-    return cardEl;
+    return col;
   }
   
