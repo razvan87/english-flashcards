@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
   background: #f9f9f9;
   padding: 20px;
-  margin: 0;
 }
 
 h1 {
@@ -99,8 +98,17 @@ h1 {
 }
 
 /* Navbar buttons spacing */
-.navbar .btn {
+.navbar {
   min-width: 90px;
+}
+
+.navbar a {
+  padding-left: 1rem;
+  font-size: 2rem;
+}
+
+#auth-area {
+  padding-right: 1rem;
 }
 
 /* Modal input focus style */
