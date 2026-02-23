@@ -64,10 +64,10 @@ english-flashcards/
 ├── README.md
 ├── backend/
 │   ├── src/
-|   |   |--docs
-|   |   |   └──swaggerSchemas.js    
+│   │   ├── docs/
+│   │   │   └── swaggerSchemas.js    
 │   │   ├── config/
-│   │   │   └── db.js              # MongoDB connection
+│   │   │   ├── db.js              # MongoDB connection
 │   │   │   └── swagger.js
 │   │   ├── controllers/
 │   │   │   └── cardController.js
@@ -86,7 +86,23 @@ english-flashcards/
 │   ├── css/
 │   │   └── styles.css
 │   └── js/
-│       └── app.js
+│       ├── app.js                  # bootstrap/init
+│       │
+│       ├── features/
+│       │   ├── auth/
+│       │   │   ├── auth.service.js  # login/register/logout logic + token storage
+│       │   │   └── auth.ui.js       # login/register forms + event binding
+│       │   │
+│       │   ├── cards/
+│       │   │   ├── cards.service.js # fetch cards
+│       │   │   └── cards.ui.js      # render cards
+│       │   │
+│       │   └── navbar/
+│       │       └── navbar.ui.js     # displayUserAuth / update navbar DOM
+│       │
+│       └── utils/
+│           └── jwt.js              # parseJwt + token helpers
+│
 
 ```
 
