@@ -1,10 +1,9 @@
 import { setToken, removeToken, getToken, parseJwt } from "../../utils/jwt.js";
-
-const API_URL = "http://localhost:3000/api/auth";
+import { CONFIG } from "../../config/config.js";
 
 
 export async function login(username, password) {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch(CONFIG.API_BASE_URL + CONFIG.ENDPOINTS.AUTH.LOGIN, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -20,7 +19,7 @@ export async function login(username, password) {
   
 
   export async function register(username, password) {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch(CONFIG.API_BASE_URL + CONFIG.ENDPOINTS.AUTH.REGISTER, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
