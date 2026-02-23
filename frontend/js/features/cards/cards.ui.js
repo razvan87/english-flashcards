@@ -1,6 +1,6 @@
 // features/cards/cards.ui.js
 import { fetchCards } from "./cards.service.js";
-import { createCardElement } from "../../card.js";
+import { createCardElement } from "./card.js";
 
 const container = document.getElementById("cards-container");
 
