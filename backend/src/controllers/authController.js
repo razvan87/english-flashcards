@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
 
 const generateToken = (user) => {
     return jwt.sign(
@@ -19,14 +20,16 @@ export const register = async (req, res) => {
             return res.status(400).json({ message: 'Username already taken'});
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         // Create new user
-        const newUser = new User({ username, password, role });
-        await newUser.save();
+        await User.create({
+            username,
+            password: hashedPassword,
+            role: role || "USER"
+          });
 
-        // Generate token
-        const token = generateToken(newUser);
-
-        res.status(201).json({ message: "User created", token });
+        res.status(201).json({ message: "User created" });
 
     } catch (error) {
         console.error('Error registering user:', error);
@@ -41,12 +44,14 @@ export const login = async (req, res) => {
         // find the user by username
         const existingUser = await User.findOne({ username });
         if (!existingUser) {
-            return res.status(400).json({ message: 'Username not find!' });
+            return res.status(400).json({ message: 'Username not find! Please register first.'});
         }
 
-        if (existingUser.password !== password) {
-            return res.status(401).json({ message: 'Incorrect credentials!' });
-        }
+        const isMatch = await bcrypt.compare(password, existingUser.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ message: "Incorrect credentials!" });
+          }
 
         const token = generateToken(existingUser);
         
