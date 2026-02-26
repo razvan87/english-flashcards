@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db   # păstrează datele când oprești containerul
+      - mongo_data:/data/db   # keep data persistent
 
   mongo-express:
     image: mongo-express:1.0.2
@@ -29,8 +29,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/usr/src/app   # sincronizează codul local → container (hot reload)
-      - /usr/src/app/node_modules   # previne suprascrierea node_modules din container
+      - uploads_data:/usr/src/app/uploads   # keep uploaded files persistent
+      - ./backend:/usr/src/app   # container (hot reload)
+      - /usr/src/app/node_modules   # avoid overwriting node_modules
     environment:
       - MONGO_URI=mongodb://mongo:27017/flashcards
     depends_on:
@@ -38,3 +39,4 @@ services:
 
 volumes:
   mongo_data:
+  uploads_data:

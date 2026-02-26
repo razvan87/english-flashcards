@@ -1,4 +1,6 @@
-/* Global Styles */
+/* ===============================
+   Global Styles
+================================= */
 body {
   font-family: Arial, sans-serif;
   background: #f9f9f9;
@@ -11,23 +13,29 @@ h1 {
   color: #333;
 }
 
-/* Cards container */
+/* ===============================
+   Cards Container
+================================= */
 #cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
-/* Card wrapper */
+/* ===============================
+   Flip Card Wrapper
+================================= */
 .flip-card {
   width: 200px;
-  height: 150px;
+  height: 220px; /* slightly taller to fit image nicely */
   perspective: 1000px;
   cursor: pointer;
 }
 
-/* Card inner */
+/* ===============================
+   Card Inner
+================================= */
 .card-inner {
   position: relative;
   width: 100%;
@@ -35,7 +43,7 @@ h1 {
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* Flip effect */
@@ -43,61 +51,97 @@ h1 {
   transform: rotateY(180deg);
 }
 
-/* Card faces */
+/* ===============================
+   Card Faces (Front & Back)
+================================= */
 .card-front,
 .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 12px;
   box-sizing: border-box;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Front side */
+/* ===============================
+   Front Side
+================================= */
 .card-front {
   background-color: #c2ac15;
   font-weight: bold;
   font-size: 1.1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 10px; /* spacing between image, word, button */
+  text-align: center;
 }
 
-/* Back side */
-.card-back {
-  background-color: #074c82;
-  transform: rotateY(180deg);
-  font-size: 0.95rem;
-  overflow-wrap: break-word;
+/* Image styling */
+.card-front img {
+  max-width: 100%;
+  max-height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Word text */
+.card-front h4 {
+  margin: 0;
 }
 
 /* Speak button */
 .speak-btn {
-  margin-left: 5px;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   cursor: pointer;
   border: none;
   background: transparent;
   color: #fff;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.2s ease;
 }
 
 .speak-btn:hover {
   transform: scale(1.2);
 }
 
-/* Card meaning text */
-.card-back p {
-  margin: 5px 0;
+/* ===============================
+   Back Side
+================================= */
+.card-back {
+  background-color: #074c82;
+  transform: rotateY(180deg);
+  font-size: 0.95rem;
+  overflow-wrap: break-word;
+  justify-content: space-between;
 }
 
-/* Navbar buttons spacing */
+/* Meaning text */
+.card-back p {
+  margin: 5px 0;
+  text-align: left;
+  width: 100%;
+}
+
+/* ===============================
+   Card Actions (Favorite, Learned, Admin)
+================================= */
+.card-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   Navbar Styling
+================================= */
 .navbar {
   min-width: 90px;
 }
@@ -111,10 +155,10 @@ h1 {
   padding-right: 1rem;
 }
 
-/* Modal input focus style */
+/* ===============================
+   Modal Input Focus
+================================= */
 .form-control:focus {
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
-
-   
