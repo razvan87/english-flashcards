@@ -69,11 +69,20 @@ export const getCards = async (req, res) => {
 
     const total = await Card.countDocuments(filter);
 
+    const host = `${req.protocol}://${req.get("host")}`;
+    const cardsWithFullImages = cards.map(card => {
+      const cardObj = card.toObject();
+      if (cardObj.imageUrl) {
+        cardObj.imageUrl = `${host}${cardObj.imageUrl}`;
+      }
+      return cardObj;
+    });
+
     res.json({
       total,
       page: Number(page),
       pages: Math.ceil(total / limit),
-      data: cards,
+      data: cardsWithFullImages,
     });
   } catch (error) {
     console.error("Error fetching cards:", error);

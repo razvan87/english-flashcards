@@ -2,9 +2,12 @@ import express from 'express';
 import authRoutes from "./routes/authRoutes.js";
 import cardRoutes from './routes/cardRoutes.js';
 import cors from 'cors';
+import path from 'path';
 
 
 const app = express();
+
+app.use("/uploads", express.static(path.join("uploads")));
 
 const allowedOrigins = [
     "http://localhost:5500",

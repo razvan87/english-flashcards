@@ -240,4 +240,12 @@ curl -X POST http://localhost:3000/api/cards \
 
     Travel
 
+    Personal Growth
+
     All (special global category)
+
+**Run the seeds**    
+
+If you want to have a some minimal data into mongo db and displayed in frontend, please run the following command that will inject into mongo an **admin user (user: admin, pass: admin123)** and some cards for testing purposes.
+
+    docker exec -it backend node seed/seed.js   
