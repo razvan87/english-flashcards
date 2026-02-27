@@ -13,6 +13,7 @@ export async function renderCards(page = 1) {
   const result = await fetchCards(page, limit);
   if (!result) {
     container.innerHTML = "<p>Unauthorized or failed to load cards.</p>";
+    paginationContainer.innerHTML = "";
     return;
   }
 
@@ -24,6 +25,7 @@ export async function renderCards(page = 1) {
   });
 
   renderPagination(current, pages);
+  
 }
 
 function renderPagination(currentPage, totalPages) {
