@@ -137,7 +137,7 @@ To stop the docker process please use command:
             user: admin
             password: admin
 
-2. Or using MongoDB shell (sau mongosh), commands:
+2. Or connecting to the mongo container, commands:
 
     ```text
     "docker exec -it mongo mongosh"
@@ -148,15 +148,25 @@ To stop the docker process please use command:
 
     ```
 
-## **Start the Backend (Development):**
+## **Access the backend container:**
 
 Backend already runs in Docker via `docker-compose`.
+
+To connect to the backend container please use:
+
+    docker exec -it backend sh
 
 Hot reload enabled via volume mapping.
 `Local changes in backend/src/ will automatically reload backend (nodemon).
 `
 
-## **Start the Frontend (Development):**
+**Run the seeds**    
+
+If you want to have a some minimal data into mongo db and displayed in frontend, please run the following command that will inject into mongo an **admin user (user: admin, pass: admin123)** and some cards for testing purposes.
+
+    docker exec -it backend node seed/seed.js   
+
+## **Start the Frontend:**
 
 Since the front-end uses ES Modules, it cannot be opened directly via file://. You need to serve it via a local server:
 
@@ -210,42 +220,43 @@ curl -X POST http://localhost:3000/api/cards \
   **Categories Available:**
   Categories Available
 
-    Animals
+    category: {
+        type: String,
+        enum: [
+          "All",       
+          'Academic',
+          "Animals",
+          "Business",
+          "Career",
+          "Clothes",
+          "Colors",
+          "Communication",
+          "Critical Thinking",
+          "Emotions",
+          "Environment",
+          "Food",
+          "General",
+          "Language",
+          "Lifestyle",
+          "Nature",
+          "Transport",
+          "People",
+          "Personal Development",
+          "Philosophy",
+          "Psychology",
+          "House",
+          "Work",
+          "School",
+          "Sports",
+          "Technology",
+          "Weather",
+          "Health",
+          "Travel",
+          "Education",
+          "Entertainment",
+          "Other",
+          "Personal Growth",
+        ],
+        required: false,
+      },
 
-    Food
-
-    Colors
-
-    Clothes
-
-    Nature
-
-    Transport
-
-    People
-
-    House
-
-    Work
-
-    School
-
-    Sports
-
-    Technology
-
-    Weather
-
-    Health
-
-    Travel
-
-    Personal Growth
-
-    All (special global category)
-
-**Run the seeds**    
-
-If you want to have a some minimal data into mongo db and displayed in frontend, please run the following command that will inject into mongo an **admin user (user: admin, pass: admin123)** and some cards for testing purposes.
-
-    docker exec -it backend node seed/seed.js   

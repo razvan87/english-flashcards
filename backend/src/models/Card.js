@@ -67,6 +67,8 @@ const cardSchema = new mongoose.Schema(
           "Nature",
           "Transport",
           "People",
+          "Personal Development",
+          "Philosophy",
           "Psychology",
           "House",
           "Work",
