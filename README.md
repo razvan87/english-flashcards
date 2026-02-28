@@ -60,9 +60,16 @@ MongoDB
 ```text
 english-flashcards/
 |── .gitignore
+├── Dockerfile
 ├── docker-compose.yml
 ├── README.md
 ├── backend/
+│   ├── seed/
+│   │   ├── config/
+│   │   │   └── seedCardsConfig.js    
+│   │   ├── imageds/
+│   │   │   └── imageName.js   
+│   │   ├── seed.js   
 │   ├── src/
 │   │   ├── docs/
 │   │   │   └── swaggerSchemas.js    
@@ -70,11 +77,17 @@ english-flashcards/
 │   │   │   ├── db.js              # MongoDB connection
 │   │   │   └── swagger.js
 │   │   ├── controllers/
-│   │   │   └── cardController.js
+│   │   │   ├── cardController.js
+│   │   │   └── authController.js
+│   │   ├── middleware
+│   │   │   ├── authMiddleware.js
+│   │   │   └── roleMiddleware.js    
 │   │   ├── models/
-│   │   │   └── Card.js
+│   │   │   ├── Card.js
+│   │   │   └── User.js
 │   │   ├── routes/
-│   │   │   └── cardRoutes.js
+│   │   │   ├── cardRoutes.js
+│   │   │   └── authRoutes.js
 │   │   ├── app.js
 │   │   └── server.js
 │   ├── .env
@@ -87,6 +100,8 @@ english-flashcards/
 │   │   └── styles.css
 │   └── js/
 │       ├── app.js                  # bootstrap/init
+│       ├── config
+│       │   └── config.js
 │       │
 │       ├── features/
 │       │   ├── auth/
