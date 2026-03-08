@@ -2,9 +2,13 @@
 import { getCurrentUser, logout } from "../auth/auth.service.js";
 import { renderCards } from "../cards/cards.ui.js";
 
+
 export function displayUserAuth() {
   const authArea = document.getElementById("auth-area");
   authArea.innerHTML = ""; // clear
+
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar) sidebar.innerHTML = ""; // remove previous admin button
 
   const user = getCurrentUser();
   if (!user) {
@@ -50,4 +54,26 @@ export function displayUserAuth() {
   });
 
   authArea.append(userWrapper, logoutBtn);
+
+  // ---------- ADMIN BUTTON ----------
+  if (user.role === "ADMIN") {
+    const wrapper = document.createElement("div");
+    wrapper.className = "d-grid mb-3";
+
+    const createBtn = document.createElement("button");
+    createBtn.id = "open-create-card";
+    createBtn.className = "btn btn-success shadow-sm";
+    createBtn.innerHTML = `<i class="bi bi-plus-circle me-2"></i>Create Flashcard`;
+
+    wrapper.appendChild(createBtn);
+    sidebar.prepend(wrapper);
+
+    // Open modal
+    createBtn.addEventListener("click", () => {
+      const modal = new bootstrap.Modal(
+        document.getElementById("createCardModal")
+      );
+      modal.show();
+    });
+  }
 }
