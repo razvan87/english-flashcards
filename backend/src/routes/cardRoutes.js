@@ -1,9 +1,31 @@
 import express from 'express';
-import { createCard, getCards } from '../controllers/cardController.js';
+import { createCard, getCards, getCategories } from '../controllers/cardController.js';
 import { authMiddleware} from '../middleware/authMiddleware.js';
 import { roleMiddleware } from '../middleware/roleMiddleware.js';
 
+
 const router = express.Router();
+
+/**
+ * @swagger
+ * /api/cards/categories:
+ *   get:
+ *     summary: Get available card categories
+ *     description: Returns all allowed category enum values from the Card schema.
+ *     tags:
+ *       - Cards
+ *     responses:
+ *       200:
+ *         description: List of categories
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ */
+router.get("/categories", authMiddleware, roleMiddleware("ADMIN", "USER"), getCategories); // USER + ADMIN can GET categories
+
 
 /**
  * @swagger

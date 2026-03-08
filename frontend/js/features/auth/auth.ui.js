@@ -1,4 +1,7 @@
-import { login as loginService, register as registerService } from "./auth.service.js";
+import {
+  login as loginService,
+  register as registerService,
+} from "./auth.service.js";
 import { displayUserAuth } from "../navbar/navbar.ui.js";
 import { renderCards } from "../cards/cards.ui.js";
 
@@ -32,12 +35,19 @@ export function bindAuthForms() {
       registerForm.reset();
 
       //switch to login tab
-      bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
-      
+      bootstrap.Modal.getInstance(
+        document.getElementById("registerModal")
+      ).hide();
+
       alert("Registration successful! Please log in.");
 
-      bootstrap.Modal.getInstance(document.getElementById("loginModal")).show();
-
+      const loginModalEl = document.getElementById("loginModal");
+      if (loginModalEl) {
+        // Use existing instance or create new one
+        const loginModal =
+          bootstrap.Modal.getInstance(loginModalEl) || new bootstrap.Modal(loginModalEl);
+        loginModal.show();
+      }
     } catch (error) {
       alert("Registration failed: " + error.message);
     }

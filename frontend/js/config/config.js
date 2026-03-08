@@ -7,6 +7,9 @@ export const CONFIG = {
             LOGIN: "/auth/login",
             REGISTER: "/auth/register",
         },
-        CARDS: "/cards",
+        CARDS: {
+                FETCH: "/cards",
+                CATEGORIES: "/cards/categories",
+        }
     },
 }

@@ -1,5 +1,11 @@
 import Card from "../models/Card.js";
 
+//GET categories
+export const getCategories = async (req, res) => {
+  const categories = Card.schema.path("category").enumValues;
+  res.json(categories);
+}
+
 //POST api/cards
 export const createCard = async (req, res) => {
   try {
@@ -17,7 +23,7 @@ export const createCard = async (req, res) => {
     res.status(201).json(savedCard);
   } catch (error) {
     console.error("Error creating card:", error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error"  + error.message });
   }
 };
 

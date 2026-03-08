@@ -16,22 +16,22 @@
 
   <!-- ================= TOP NAVBAR ================= -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <!-- Logo -->
-      <a class="navbar-brand fw-bold" href="/">
-        📚 Flashcards
-      </a>
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" href="/">
+      📚 Flashcards
+    </a>
 
-      <!-- Right Side -->
-      <div class="d-flex align-items-center ms-auto" id="auth-area"></div>
+    <!-- Right Side -->
+    <div class="d-flex align-items-center ms-auto" id="auth-area"></div>
   </nav>
-  
+
   <!-- ================= MAIN LAYOUT ================= -->
   <div class="container-fluid flex-grow-1">
     <div class="row">
 
       <!-- ========== SIDEBAR ========== -->
-      <aside class="col-md-3 col-lg-2 bg-light border-end p-3">
-
+      <aside id="sidebar" class="col-md-3 col-lg-2 bg-light border-end p-3">
+          <!-- Admin button will be injected dynamically -->
       </aside>
 
       <!-- ========== MAIN CONTENT ========== -->
@@ -98,6 +98,86 @@
             <button type="submit" class="btn btn-success w-100">Register</button>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Card Modal -->
+  <div class="modal fade" id="createCardModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-plus-circle me-2"></i>Create Flashcard
+          </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <form id="create-card-form">
+
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <label class="form-label">Word</label>
+                <input type="text" id="card-text" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Level</label>
+                <select id="card-level" class="form-select" required>
+                  <option>A1</option>
+                  <option>A2</option>
+                  <option>B1</option>
+                  <option>B2</option>
+                  <option>C1</option>
+                  <option>C2</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Image URL</label>
+                <input type="text" id="card-image" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Part of Speech</label>
+                <select id="card-pos" class="form-select">
+                  <option>noun</option>
+                  <option>verb</option>
+                  <option>adjective</option>
+                  <option>adverb</option>
+                  <option>phrase</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Category</label>
+                <div id="card-category-container"></div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Definition</label>
+                <textarea id="card-definition" class="form-control" required></textarea>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Example</label>
+                <textarea id="card-example" class="form-control" required></textarea>
+              </div>
+
+            </div>
+
+            <button class="btn btn-success w-100 mt-4">
+              <i class="bi bi-save me-2"></i>Create Card
+            </button>
+
+          </form>
+
+        </div>
+
       </div>
     </div>
   </div>
