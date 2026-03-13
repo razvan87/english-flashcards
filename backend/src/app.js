@@ -26,7 +26,7 @@ const allowedOrigins = [
     methods: ["GET", "POST", "PUT", "DELETE"]
   }));
 
-// middleware to read JSON
+// middleware to read JSONgit 
 app.use(express.json());
 
 // routes

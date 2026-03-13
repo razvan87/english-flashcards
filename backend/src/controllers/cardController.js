@@ -9,13 +9,22 @@ export const getCategories = async (req, res) => {
 //POST api/cards
 export const createCard = async (req, res) => {
   try {
-    const { text, imageUrl, level, meanings, category } = req.body;
+    const { text, level, meanings, category } = req.body;
+
+    // Multer saves the file info in req.file
+    let imageUrl = "";
+    if (req.file) {
+      imageUrl = `/uploads/${req.file.filename}`; // or your public URL path
+    }  
+
+    // meanings come as JSON string, parse it
+    const parsedMeanings = typeof meanings === "string" ? JSON.parse(meanings) : meanings;
 
     const newCard = new Card({
       text,
       imageUrl,
       level,
-      meanings,
+      meanings: parsedMeanings,
       category,
     });
 

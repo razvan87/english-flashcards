@@ -2,6 +2,7 @@ import express from 'express';
 import { createCard, getCards, getCategories } from '../controllers/cardController.js';
 import { authMiddleware} from '../middleware/authMiddleware.js';
 import { roleMiddleware } from '../middleware/roleMiddleware.js';
+import { upload } from '../middleware/uploadMiddleware.js';
 
 
 const router = express.Router();
@@ -24,7 +25,7 @@ const router = express.Router();
  *               items:
  *                 type: string
  */
-router.get("/categories", authMiddleware, roleMiddleware("ADMIN", "USER"), getCategories); // USER + ADMIN can GET categories
+router.get("/categories", getCategories); // USER + ADMIN can GET categories
 
 
 /**
@@ -135,7 +136,7 @@ router.get("/", authMiddleware, roleMiddleware("ADMIN", "USER"), getCards); // U
  *       201:
  *         description: Card created
  */
-router.post("/", authMiddleware, roleMiddleware("ADMIN"), createCard); // Only ADMIN
+router.post("/", authMiddleware, roleMiddleware("ADMIN"), upload.single("image"), createCard); // Only ADMIN
 
 
 router.route("/:id", authMiddleware, roleMiddleware("ADMIN"))
