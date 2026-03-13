@@ -1,8 +1,6 @@
 import { getToken } from "../../utils/jwt.js";
 import { CONFIG } from "../../config/config.js";
 
-const API_URL = "http://localhost:3000/api/cards";
-
 export async function fetchCategories() {
   const token = getToken();
   const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.CARDS.CATEGORIES}`, {
@@ -28,16 +26,15 @@ export async function fetchCards(page = 1, limit = 9) {
   return await response.json();
 }
 
-export async function createCard(cardData) {
+export async function createCard(formData) {
   const token = getToken();
 
   const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.ENDPOINTS.CARDS.FETCH}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
     },
-    body: JSON.stringify(cardData),
+    body: formData,
   });
 
   if (!response.ok) {
