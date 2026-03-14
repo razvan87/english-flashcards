@@ -68,20 +68,21 @@ english-flashcards/
 │   │   ├── config/
 │   │   │   └── seedCardsConfig.js    
 │   │   ├── imageds/
-│   │   │   └── imageName.js   
+│   │   │   └── imageName.js         # contains the images 
 │   │   ├── seed.js   
 │   ├── src/
 │   │   ├── docs/
 │   │   │   └── swaggerSchemas.js    
 │   │   ├── config/
-│   │   │   ├── db.js              # MongoDB connection
+│   │   │   ├── db.js                 # MongoDB connection
 │   │   │   └── swagger.js
 │   │   ├── controllers/
 │   │   │   ├── cardController.js
 │   │   │   └── authController.js
 │   │   ├── middleware
 │   │   │   ├── authMiddleware.js
-│   │   │   └── roleMiddleware.js    
+│   │   │   ├── roleMiddleware.js
+│   │   │   └── uploadMiddleware.js    
 │   │   ├── models/
 │   │   │   ├── Card.js
 │   │   │   └── User.js
@@ -99,24 +100,28 @@ english-flashcards/
 │   ├── css/
 │   │   └── styles.css
 │   └── js/
-│       ├── app.js                  # bootstrap/init
+│       ├── app.js                     # bootstrap/init
 │       ├── config
 │       │   └── config.js
 │       │
 │       ├── features/
 │       │   ├── auth/
-│       │   │   ├── auth.service.js  # login/register/logout logic + token storage
-│       │   │   └── auth.ui.js       # login/register forms + event binding
+│       │   │   ├── auth.service.js    # login/register/logout logic + token storage
+│       │   │   └── auth.ui.js         # login/register forms + event binding
 │       │   │
 │       │   ├── cards/
-│       │   │   ├── cards.service.js # fetch cards
-│       │   │   └── cards.ui.js      # render cards
+│       │   │   ├── cards.service.js    # fetch cards
+│       │   │   ├── cards.ui.js         # render cards
+│       │   │   ├── card.js
+│       │   │   ├── createCard.ui.js    # create cards 
+│       │   │   ├── guestCarousel.ui.js 
+│       │   │   └── speak.js 
 │       │   │
 │       │   └── navbar/
-│       │       └── navbar.ui.js     # displayUserAuth / update navbar DOM
+│       │       └── navbar.ui.js        # displayUserAuth / update navbar DOM
 │       │
 │       └── utils/
-│           └── jwt.js              # parseJwt + token helpers
+│           └── jwt.js                  # parseJwt + token helpers
 │
 
 ```
