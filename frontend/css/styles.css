@@ -2,9 +2,9 @@
    Global Styles
 ================================= */
 body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  padding: 20px;
+  font-family: "Inter", Arial, sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  padding: 30px;
 }
 
 h1 {
@@ -20,15 +20,15 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 35px;
 }
 
 /* ===============================
    Flip Card Wrapper
 ================================= */
 .flip-card {
-  width: 200px;
-  height: 220px; /* slightly taller to fit image nicely */
+  width: 260px;
+  height: 300px; /* slightly taller to fit image nicely */
   perspective: 1000px;
   cursor: pointer;
 }
@@ -41,7 +41,8 @@ h1 {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.6s;
+  /* transition: transform 0.6s; */
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
   border-radius: 10px;
 }
@@ -74,51 +75,75 @@ h1 {
    Front Side
 ================================= */
 .card-front {
-  background-color: #c2ac15;
-  font-weight: bold;
-  font-size: 1.1rem;
-  gap: 10px; /* spacing between image, word, button */
+  /* background: linear-gradient(145deg, #4f46e5, #6366f1); */
+  background: linear-gradient(145deg, #5c5a6a, #bfbfd5);
+  font-weight: 600;
+  font-size: 1.4rem;
+  gap: 16px;
   text-align: center;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.15),
+    0 5px 10px rgba(0,0,0,0.08);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flip-card:hover .card-front {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.25),
+    0 10px 15px rgba(0,0,0,0.12);
 }
 
 /* Image styling */
 .card-front img {
-  max-width: 100%;
-  max-height: 90px;
+  width: 90%;
+  height: 120px;
   object-fit: cover;
-  border-radius: 8px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 6px 15px rgba(0,0,0,0.2);
+
+  transition: transform 0.25s ease;
+}
+
+.flip-card:hover img {
+  transform: scale(1.05);
 }
 
 /* Word text */
 .card-front h4 {
-  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
 }
 
-/* Speak button */
 .speak-btn {
-  font-size: 1.2rem;
-  cursor: pointer;
+  font-size: 1.6rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  padding: 8px 12px;
   border: none;
-  background: transparent;
-  color: #fff;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.2s ease;
+
+  transition: all 0.2s ease;
 }
 
 .speak-btn:hover {
-  transform: scale(1.2);
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.15);
 }
 
 /* ===============================
    Back Side
 ================================= */
+/* BACK */
 .card-back {
-  background-color: #074c82;
+  background: linear-gradient(145deg, #0f172a, #1e293b);
   transform: rotateY(180deg);
-  font-size: 0.95rem;
-  overflow-wrap: break-word;
-  justify-content: space-between;
+  font-size: 1rem;
+  padding: 20px;
 }
 
 /* Meaning text */
@@ -161,4 +186,75 @@ h1 {
 .form-control:focus {
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* ===============================
+   Carousel Styling
+================================= */
+.hero-carousel {
+  height: 75vh;
+}
+
+.hero-slide {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  padding: 25px;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* ===============================
+   Pagination Styling
+================================= */
+.pagination button {
+  background-color: #5c5a6a;
+  color: 5c5a6a;
+
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin: 0 4px;
+
+  border: none;
+  cursor: pointer;
+
+  font-weight: 500;
+
+  transition: 
+    background-color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hover */
+.pagination button:hover {
+  background-color: #5c5a6a;
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Active page */
+.pagination button.active {
+  background-color: #5c5a6a;
+}
+
+/* Optional: smoother click */
+.pagination button:active {
+  transform: scale(0.95);
 }
